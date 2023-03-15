@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import '../components/meal_item.dart';
+import '../data/dummy_data.dart';
+
 class CategoriesMealsScreen extends StatelessWidget {
   //const CategoriesMealsScreen({super.key});
   //final Category category;
@@ -13,14 +16,24 @@ class CategoriesMealsScreen extends StatelessWidget {
   Widget build(BuildContext context) 
   {
     final category = ModalRoute.of(context)!.settings.arguments as Category;
-    
+    final categoryMeals = DUMMY_MEALS.where((meal) {
+        return meal.categories.contains(category.id);
+    }).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(category.title),
       ),
-      body: Center(
-        child: Text("Receitas por Categoria${category.id}"),
-        ),
+      body: ListView.builder(
+        itemCount:categoryMeals.length,
+        itemBuilder: (ctx, index) {
+          return MealItem(categoryMeals[index]);
+        },
+
+      )
+      // body: Center(
+      //   child: Text("Receitas por Categoria${category.id}"),
+      //   ),
     );
   }
 }
