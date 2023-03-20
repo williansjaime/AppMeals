@@ -3,7 +3,9 @@ import '../components/category_item.dart';
 import '../data/dummy_data.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  //const CategoriesScreen({super.key});
+  const CategoriesScreen({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {

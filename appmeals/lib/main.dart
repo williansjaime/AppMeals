@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'screens/categoies_screen.dart'; 
 import 'screens/categories_meal_screens.dart';
 import 'utils/app_routes.dart';
+import 'screens/meal_detail_screen.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(const MyApp());
+}
  
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,9 +29,28 @@ class MyApp extends StatelessWidget {
       ),
       //home: CategoriesScreen(),
       routes: {
-        AppRoutes.HOME:(ctx) => CategoriesScreen(), 
-        AppRoutes.CATEGORIES_MEALS:(context) => CategoriesMealsScreen(),
+        AppRoutes.HOME:(ctx) => const CategoriesScreen(),         
+        AppRoutes.CATEGORIES_MEALS:(context) => const CategoriesMealsScreen(),
+        AppRoutes.MEAL_DETAIL:(ctxt) => const MealDetailScreen(),
+        
       },
+      /*onGenerateRoute: (settings){
+        if(settings.name == "/alguma-coisa"){
+          return null;
+        }else if(settings.name == "/outra-coisa"){
+          return null;
+        }else{
+          return MaterialPageRoute(builder: (_){
+              return CategoriesScreen();
+          });
+        }
+      },
+
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (_){
+          return CategoriesMealsScreen();
+        });
+      },*/
     );
   }
 }
